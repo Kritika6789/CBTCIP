@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Navbar from './Component/Navbar';
+import Signin from './Component/Signin';
+import Event1 from './Component/Event1';
+// import Wedding from './Component/Wedding';
+import Wedding8 from './Component/Wedding8';
+import { ShopContextProvider } from './Component/shopcontext';
+import Hotel from './Component/Hotel';
+import Bookingscreen from './Component/Bookingscreen';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <div>
+  <ShopContextProvider>
+    <Router>
+    <Navbar/>
+    
+      <Routes>
+        <Route exact path="/" element={<Event1/>}></Route>
+        {/* <Route exact path="/wedding" element={<Wedding/>}></Route> */}
+        <Route exact path="/signin" element={<Signin/>}></Route>
+        <Route exact path="/getdata" element={<Wedding8/>}></Route>
+        <Route exact path="/rooms" element={<Hotel/>}></Route>
+        <Route exact path="/room/:roomid/:fromDate/:toDate" element={<Bookingscreen/>}></Route>
+
+      </Routes>
+    </Router>
+    </ShopContextProvider>
+  </div>
   );
 }
 
